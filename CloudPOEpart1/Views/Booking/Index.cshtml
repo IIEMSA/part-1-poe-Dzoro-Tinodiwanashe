@@ -1,0 +1,39 @@
+﻿@model IEnumerable<CloudPOEpart1.Models.Booking>
+
+@{
+    ViewData["Title"] = "Bookings";
+}
+
+<h1>Bookings</h1>
+
+<div class="mt-4">
+    <a class="btn" style="background-color: black; color: white;" asp-controller="Booking" asp-action="Create">Create New Booking</a>
+
+</div>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>Event</th>
+            <th>Venue</th>
+            <th>Booking Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                <td>@booking.BookingID</td>
+                <td>@booking.Event.EventName</td>
+                <td>@booking.Venue.VenueName</td>
+                <td>@booking.BookingDate.ToString("MM/dd/yyyy")</td>
+                <td>
+                    <a class="btn" style="background-color: black; color: white;" asp-controller="Booking" asp-action="Edit" asp-route-id="@booking.BookingID">Edit</a>
+                    <a class="btn" style="background-color: black; color: white;" asp-controller="Booking" asp-action="Delete" asp-route-id="@booking.BookingID">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
